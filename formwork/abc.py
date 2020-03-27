@@ -21,11 +21,7 @@ b = reduce(lambda x, y: x * y, [1, '2', 3])
 
 
 # sys.argv 获取命令行参数，返回值是List，第一个元素是程序本身
-# c = sys.argv[1]
-# d = sys.argv[2]
-# e = sys.argv
-# for i in e[1:]:
-#     print(i)
+# # c = sys.argv[1]
 
 os.path.abspath('abc.py')  # 返回该文件的绝对路径
 
