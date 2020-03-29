@@ -1,5 +1,5 @@
 # -*-coding:utf-8-*-
-# 行列数据写入Excel
+# 行列数据写入Excel,csv,html表格
 
 from pymongo import MongoClient
 from pandas import DataFrame, read_excel
