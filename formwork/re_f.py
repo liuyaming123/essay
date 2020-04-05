@@ -44,7 +44,7 @@ re.X	该标志通过给予你更灵活的格式以便你将正则表达式写得
 '''
 
 l1 = re.split(r'[\s,/%\\]+', 'a/, b,c\,   r, %%, d')  # 切分字符串，结果为list
-print(l1)
+# print(l1)
 
 l2 = re.match(r'^(\d+?)(0*)$', '1230540000')  # 正则默认是贪婪匹配，加个？号，去掉贪婪匹配，分组匹配
 # print(ll2.groups())
@@ -54,15 +54,16 @@ l2 = re.match(r'^(\d+?)(0*)$', '1230540000')  # 正则默认是贪婪匹配，�
 match与search都只匹配符合条件的一个结果（非贪婪），match只匹配字符串的开始位置，search既可以匹配首位置，也可匹配非首位置
 '''
 l3 = re.search('[Pp]ython', 'book door Python son python')
+# print(l3.span())
 # print(l3.group())
+# print(type(l3.group()))
 
 
 s = '610524199306256037'
-res = re.search(
-    '(?P<province>\d{2})(?P<city>\d{2})(?P<part>\d{2})(?P<born_year>\d{4})(?P<birthday>\d{4})(?P<police_code>\d{2})(?P<sex>\d{1})(?P<check_code>\d{1})',
-    s)
-# print(res.groupdict())
-
+res = re.match('610', s)
+# print(res.span())
+# print(res.group())
+# print(type(res.group()))
 
 '''
 match与search只匹配一次，findall是匹配所有、结果是列表的形式
@@ -84,10 +85,9 @@ r2 = pa.findall('run88oob123google456', 0, 10)  # 表示从起始位置开始的
 懒惰模式– a.*?c –得到的答案为：abc,abc
 '''
 l4 = 'abcgabcxabc'
-p0 = re.findall('a.*c', l4)  # 结果：['abcgabcxabc']
-# p0 = re.findall('a.*?c',l4)     # 结果：['abc', 'abc', 'abc']
+# p0 = re.findall('a.*c', l4)  # 结果：['abcgabcxabc']
+p0 = re.findall('a.*?c', l4)  # 结果：['abc', 'abc', 'abc']
 # print(p0)
-
 
 # 去掉html标签
 '''
@@ -106,9 +106,9 @@ s3 = re.findall('python', 'dsds python python python fdfd python python ddpython
 # print(len(s3))
 
 
-# 匹配ip地址的正则
+# 匹配ip地址的正则  {m,n}默认贪婪模式，尽可能多的匹配
 s4 = "'ip': '222.74.61.98', 'port': 53281, 'type': 'HTTP''ip': '58.249.55.222', 'port': 9797, 'type': 'HTTP''ip': '61.145.182.27', 'port': 53281, 'type': 'HTTPS'}"
-p2 = re.findall('\d+\.\d+\.\d+\.\d+', s4)
+p2 = re.findall('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', s4)
 # print(p2)
 
 
@@ -218,6 +218,7 @@ c3 = re.findall('\W', t4)
 # print(c3)
 
 # 匹配中文：[\u4e00-\u9fa5]
-t5 = '朝花夕this 拾北go京走 ji上海市'
-c4 = re.findall('[\u4e00-\u9fa5]+', t5)
+t5 = '朝花夕this 拾北go*$%京走  ji上_海市'
+# c4 = re.findall('[\u4e00-\u9fa5]+', t5)
+c4 = re.findall('\w+', t5)
 # print(c4)
