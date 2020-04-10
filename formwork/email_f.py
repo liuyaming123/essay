@@ -10,13 +10,13 @@ from email.mime.multipart import MIMEMultipart
 """设置发送方信息"""
 # ================================
 # smtp服务地址
-host = 'smtp.163.com'
+host = ''
 # 端口
 port = 465
 # 发件人
-user = 'lym_6017@163.com'
+user = 'l'  # com
 # 授权码
-pwd = 'VYASAYBPGIZPJFRK'
+pwd = ''
 # ================================
 
 
