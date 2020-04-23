@@ -13,7 +13,8 @@ def main(input_str):
                 li.append(ss)  # 如果重复，就把上一个未重复的子串添加到列表
             ss = li[-1].split(i)[-1]  # 用当前循环到的单个字符i去分割前一个添加到列表的子串，目的在于判断前一个添加到列表的子串是否包含当前字符i
             ss += i  # 上一行的结果一定不包含i
-    li.append(ss)
+    if ss not in li:
+        li.append(ss)  # 添加最后一个ss
 
     li.sort(key=lambda x: len(x))
     print(li)
@@ -23,3 +24,6 @@ def main(input_str):
 
 if __name__ == '__main__':
     main('dvvdf')
+    main('abcabcabc')
+    main('pwwkew')
+    main('bbbbb')
