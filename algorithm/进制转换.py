@@ -36,7 +36,7 @@ def other_to_ten(sss, xxx):
     其他进制转十进制
     :param sss: 其他进制数，type of str
     :param xxx: 具体几进制, int
-    :return: 返回对应的十进制数
+    :return: 返回对应的十进制数, int
     """
 
     num = 0
