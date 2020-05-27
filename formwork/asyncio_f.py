@@ -6,22 +6,26 @@ import aiohttp
 
 from bs4 import BeautifulSoup
 import re
+import random
 
+user_agent = [
+    'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1',
+    'Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1',
+    'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Maxthon 2.0)',
+    'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; TencentTraveler 4.0)',
+    'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.50727; SE 2.X MetaSr 1.0)',
+    'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; 360SE)',
+    'Mozilla/5.0 (Windows; U; Windows NT 6.1; ) AppleWebKit/534.12 (KHTML, like Gecko) Maxthon/3.0 Safari/534.12',
+    'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; InfoPath.3; .NET4.0C; .NET4.0E; SE 2.X MetaSr 1.0)',
+    'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
+]
 
 headers = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'zh-CN,zh;q=0.9',
-    'Cache-Control': 'max-age=0',
-    'Connection': 'keep-alive',
-    'Cookie': 'kztoken=nJail6zJp6iXaJqWl3FnZGpvZJeT; his=a%3A10%3A%7Bi%3A0%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYZiY%22%3Bi%3A1%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYZmU%22%3Bi%3A2%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYZmZ%22%3Bi%3A3%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYZqa%22%3Bi%3A4%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYZuW%22%3Bi%3A5%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYZyb%22%3Bi%3A6%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYpOW%22%3Bi%3A7%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYpWY%22%3Bi%3A8%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvYpaU%22%3Bi%3A9%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpvZJeT%22%3B%7D; _ga=GA1.3.348911860.1582772329; _ga=GA1.2.348911860.1582772329; UtzD_f52b_saltkey=E9D5he9g; UtzD_f52b_lastvisit=1585059288; UtzD_f52b_auth=3897GcibZR1IvyvzEukXIuEtizAph4jg2UgBC2fYArsm55l6Pg3Soil2f%2B4T3ZPXLUEEmjR1fuudLYy%2FRyP3rqKOtp0; acw_tc=2f624a7015854968975406187e4ea88c277f92340789ca6ba7fcf79ba5054d; think_language=zh-CN; PHPSESSID=li8iq207kgpc55vkfeic8jvp80; _gid=GA1.2.1424451159.1585496898; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1583148945,1585496898; kztoken=nJail6zJp6iXaJqWl3FnZGpuapOa; his=a%3A2%3A%7Bi%3A0%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpuaZyZ%22%3Bi%3A1%3Bs%3A28%3A%22nJail6zJp6iXaJqWl3FnZGpuapOa%22%3B%7D; hmap_show=true; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1585497133',
-    'Host': 'db.yaozh.com',
-    'Sec-Fetch-Dest': 'document',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-Site': 'none',
-    'Sec-Fetch-User': '?1',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36'
+    # 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36',
+    'User-Agent': random.choice(user_agent),
+
 }
 comp = re.compile('<[^>]+>')
 conn = aiohttp.TCPConnector(ssl=False)  # 防止ssl报错
