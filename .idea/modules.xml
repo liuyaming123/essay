@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/pinlan_work/ai-service/.idea/ai-service.iml" filepath="$USER_HOME$/pinlan_work/ai-service/.idea/ai-service.iml" />
       <module fileurl="file://$USER_HOME$/pinlan_work/ai-ylt/.idea/ai-ylt.iml" filepath="$USER_HOME$/pinlan_work/ai-ylt/.idea/ai-ylt.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/essay.iml" filepath="$PROJECT_DIR$/.idea/essay.iml" />
       <module fileurl="file://$PROJECT_DIR$/../flask_test/.idea/flask_test.iml" filepath="$PROJECT_DIR$/../flask_test/.idea/flask_test.iml" />
