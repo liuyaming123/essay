@@ -1,32 +1,59 @@
 # -*- coding:utf-8 -*-
+"""decorator"""
 
 
-# 基本装饰器
-# def A(fun):
-#     print("we are feel good!")
-#     fun()
-#     print("sincerely.")
-#     return lambda: None
+# 闭包：内部函数调用外部函数的局部变量，外部函数返回内部函数的函数名
+# def outer(x):
+#     def inner(y):
+#         return x + y
+#     return inner
 #
 #
-# @A
-# def B():
-#     print("B")
+# print(outer(1)(5))
 
 
-# 带参数的装饰器，本质上就是一个闭包函数
-def wraper(fun):
-    def inner(*args, **kwargs):
-        print("执行函数前要处理的")
-        fun(*args, **kwargs)
-        print("执行函数后要处理的")
-        return fun
-    return inner
+# -------------------------------------------------------------------
 
 
-@wraper
-def E(name, age):
-    print('my name is %s, age is %s' % (name, age))
+# 装饰器本身不带参数
+# def outer(func):
+#     def inner(*args, **kwargs):
+#         print('被装饰函数执行前执行')
+#         func(*args, **kwargs)
+#         print('被装饰函数执行后执行')
+#     return inner
+#
+#
+# @outer
+# def peak(a, b, sex='男'):
+#     print(a, b, sex)
+#
+#
+# peak(3, 5)
 
 
-E("Jane", 1)
+# -------------------------------------------------------------------
+
+
+# 装饰器本身带参数
+def wrapper(max_times=5):
+    def outer(func):
+        def inner(*args, **kwargs):
+            for i in range(max_times):
+                try:
+                    func(*args, **kwargs)
+                    break
+                except Exception as e:
+                    print(e)
+        return inner
+    return outer
+
+
+@wrapper(max_times=2)
+def peak_of_life(a, b):
+    r = a / b
+    print(r)
+
+
+peak_of_life(1, 2)
+
