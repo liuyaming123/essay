@@ -25,4 +25,4 @@ if __name__ == '__main__':
     li.remove(0)
     print(half_search(li, 99))
 
-"添加 te"
+"添r"
