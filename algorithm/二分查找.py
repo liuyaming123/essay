@@ -26,3 +26,4 @@ if __name__ == '__main__':
     print(half_search(li, 99))
 
 "添r g"
+'fff'
