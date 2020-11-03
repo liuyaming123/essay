@@ -24,3 +24,5 @@ if __name__ == '__main__':
     li = list(range(10000))
     li.remove(0)
     print(half_search(li, 99))
+
+"添加 test"
