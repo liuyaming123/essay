@@ -69,7 +69,7 @@ def is_matched(s):
         elif i in right:
             if len(li) == 0:
                 return False
-            elif right.index(i) != left.index(li.pop(-1)):
+            elif right.index(i) != left.index(li.pop()):
                 return False
     return len(li) == 0
 
