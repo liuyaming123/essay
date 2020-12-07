@@ -62,7 +62,7 @@ class ExcelData():
         # 返回从excel中获取到的数据：以列表存字典的形式返回
         return datas
 if __name__ == "__main__":
-    data_path = "/Users/liu/Desktop/员工信息--1206.xlsx"
+    data_path = "xxx.xlsx"
     sheetname = "通讯录"
     get_data = ExcelData(data_path, sheetname)
     datas = get_data.readExcel()
