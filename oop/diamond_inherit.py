@@ -54,3 +54,14 @@ class D(B, C):
 
 
 d = D()
+'''
+D
+B
+C
+A
+'''
+
+
+# 每个类都有一个mro属性，它的值是一个元组，按照方法解析顺序（Method Resolution Order, MRO）列出各个超类
+print(D.__mro__)
+# (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
