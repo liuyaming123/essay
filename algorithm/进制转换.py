@@ -10,41 +10,27 @@
 2828 = 7**0 * 0 + 7**1 * 5 + 7**2 * 1 + 7**3 * 1 + 7**4 * 1
 '''
 
-
-def ten_to_other(num, xxx):
-    """
-    十进制转其他进制
-    :param num: 一个十进制整数
-    :param xxx: 要转换的进制数，正整数
-    :return: 以字符串的形式返回转换后的结果
-    """
-
-    sss = ''
-    while num > 0:
-        x = num % xxx
-        sss = str(x) + sss
-        num //= xxx
-    return sss
+'''十进制转二进制'''
+def transfer_binary(d):
+    sli = []
+    while d > 0:
+        remainder = d % 2
+        sli.append(str(remainder))
+        d = d // 2
+    return ''.join(sli[::-1])
 
 
-if __name__ == '__main__':
-    print(ten_to_other(2828, 7))
 
-
-def other_to_ten(sss, xxx):
-    """
-    其他进制转十进制
-    :param sss: 其他进制数，type of str
-    :param xxx: 具体几进制, int
-    :return: 返回对应的十进制数, int
-    """
-
-    num = 0
-    for s in range(len(sss)):
-        num += xxx**s * int(sss[::-1][s])
-
-    return num
+'''十进制转任意进制'''
+def transfer_binary_common(d, base):
+    digits = '0123456789ABCDEF'  # digits随着需要增加
+    sli = []
+    while d > 0:
+        remainder = d % base
+        sli.append(digits[remainder])
+        d = d // base
+    return ''.join(sli[::-1])
 
 
 if __name__ == '__main__':
-    print(other_to_ten('11150', 7))
+    print(transfer_binary_common(100000, 16))
