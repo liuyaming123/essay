@@ -22,7 +22,7 @@ def transfer_binary(d):
 
 
 '''十进制转任意进制'''
-def transfer_binary_common(d, base):
+def transfer_common(d, base):
     digits = '0123456789ABCDEF'  # digits随着需要增加
     sli = []
     while d > 0:
@@ -32,5 +32,15 @@ def transfer_binary_common(d, base):
     return ''.join(sli[::-1])
 
 
+'''用递归实现整数转任意进制'''
+def to_str(n, base):
+    digits = '0123456789ABCDEF'
+    if n < base:
+        return digits[n]
+    else:
+        return to_str(n // base, base) + digits[n % base]
+
+
 if __name__ == '__main__':
-    print(transfer_binary_common(100000, 16))
+    print(transfer_common(100000, 16))
+    print(to_str(100000, 16))
