@@ -3,6 +3,9 @@
 """
 算法描述：
 给定一个整数数组和一个目标值，找出数组中和为目标值的两个数
+
+算法重点：
+遍历一次列表，保存每一个被遍历项，让当前遍历项与已经保存的遍历项对比，看相加是否得目标数
 """
 
 def solution(nums, target):
@@ -12,7 +15,7 @@ def solution(nums, target):
     for i in range(0, len(nums)):
         # 相减得到另一个数值
         num = target - nums[i]
-        # 如果另一个数值不在字典中，则将第一个数值及其的索引报错在字典中
+        # 如果另一个数值不在字典中，则将第一个数值及其的索引保存在字典中
         # 因为在字典中查找的时间复杂度为O(1)，因此总时间复杂度为O(n)
         if num not in dict1:
             dict1[nums[i]] = i
@@ -21,4 +24,4 @@ def solution(nums, target):
             return [dict1[num], i]
 
 
-print(solution([1,4,6,2,7], target=9))
+print(solution([1,4,3,6,7,2,7], target=9))
