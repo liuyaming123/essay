@@ -8,23 +8,19 @@
 '''
 
 
-def qsort(li):
-    if len(li) < 2:  # 递归终止的条件
-        return li
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    basis = arr[len(arr) // 2]  # 选择基准元素
 
-    mid = li[len(li) // 2]  # 选择中间元素作为对比项
-    left, right = [], []  # 初始化左右列表
+    left = [i for i in arr if i < basis]
+    middle = [i for i in arr if i == basis]
+    right = [i for i in arr if i > basis]
 
-    li.remove(mid)  # 删除中间元素
+    return quick_sort(left) + middle + quick_sort(right)
 
-    for i in li:
-        if i < mid:
-            left.append(i)
-        else:
-            right.append(i)
+l = [8, 3, 7, 2, 4, 9, 1, 3]
 
-    return qsort(left) + [mid] + qsort(right)
-
-
-# print(qsort([11, 99, 33, 69, 77, 88, 55, 11, 33, 36, 39, 66, 44, 22]))
-print(qsort([2, 5, 1, 4, 3]))
+res = quick_sort(l)
+print(res)
